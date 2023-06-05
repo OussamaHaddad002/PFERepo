@@ -17,9 +17,9 @@ public class User {
     @Column(length = 50, unique = true, nullable = false)
     private String login;
 
-//    @JsonIgnore
-//    @Column(name = "password_hash", length = 60, nullable = false)
-//    private String password;
+    @JsonIgnore
+    @Column(name = "password", length = 60, nullable = false)
+    private String password;
 
 
     @Column(name = "first_name", length = 50)
@@ -88,13 +88,13 @@ public class User {
         this.login = login;
     }
 
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getFirstName() {
         return firstName;

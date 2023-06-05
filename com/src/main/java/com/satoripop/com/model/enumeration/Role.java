@@ -5,4 +5,6 @@ public enum Role {
     ProductOwner,
     TeamMember,
     BSM,
+
+    Designer
 }

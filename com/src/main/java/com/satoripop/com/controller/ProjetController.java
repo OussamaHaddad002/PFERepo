@@ -39,6 +39,39 @@ public class ProjetController {
     }
     @RequestMapping(method = RequestMethod.PUT, value = "/projet/{id}")
     public void updateProjet(@RequestBody Projet Projet,@PathVariable long id){
-        projetService.update(Projet,id);
+        Projet existingProject = projetService.getProjetById(id);
+        if (existingProject != null) {
+            // Update only the non-null properties of the existing project with the values from the request
+            if (Projet.getName() != null) {
+                existingProject.setName(Projet.getName());
+            }
+            if (Projet.getType() != null) {
+                existingProject.setType(Projet.getType());
+            }
+            if (Projet.getEstimation() != 0) {
+                existingProject.setEstimation(Projet.getEstimation());
+            }
+            if (Projet.getDeadline() != 0) {
+                existingProject.setDeadline(Projet.getDeadline());
+            }
+            if (Projet.getCreatedBy() != null) {
+                existingProject.setCreatedBy(Projet.getCreatedBy());
+            }
+            if (Projet.getLastModifiedBy() != null) {
+                existingProject.setLastModifiedBy(Projet.getLastModifiedBy());
+            }
+            if (Projet.getCreatedDate() != 0) {
+                existingProject.setCreatedDate(Projet.getCreatedDate());
+            }
+            if (Projet.getLastModifiedDate() != 0) {
+                existingProject.setLastModifiedDate(Projet.getLastModifiedDate());
+            }
+            if (Projet.getResourcesPlanning() != null) {
+                existingProject.setResourcesPlanning(Projet.getResourcesPlanning());
+            }
+
+            // Call the update method from the service to save the changes
+            projetService.update(existingProject,id);
+        }
     }
 }

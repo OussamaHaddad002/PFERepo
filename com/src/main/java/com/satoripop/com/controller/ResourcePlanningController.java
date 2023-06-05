@@ -1,10 +1,7 @@
 package com.satoripop.com.controller;
 
 import com.satoripop.com.model.ResourcePlanning;
-import com.satoripop.com.model.enumeration.Regime;
-import com.satoripop.com.model.enumeration.Res;
-import com.satoripop.com.model.enumeration.Role;
-import com.satoripop.com.model.enumeration.Status;
+import com.satoripop.com.model.enumeration.*;
 import com.satoripop.com.service.ResourcePlanningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +21,7 @@ public class ResourcePlanningController {
 
     @RequestMapping("/resourcePlanning")
     public ResourcePlanning getResourcePlanning(){
-        ResourcePlanning resourcePlanning = new ResourcePlanning(1L, Role.BSM, Regime.FullTime,11,12,2F, Res.Allocated,"Me","Me",15,14);
+        ResourcePlanning resourcePlanning = new ResourcePlanning(1L,"Me" ,Role.BSM, bus.CLOUD ,Regime.FullTime,11,12,2F, Res.Allocated,"Me","Me",15,14,14F);
         return resourcePlanning;
     }
 

@@ -42,6 +42,27 @@ public class BUConroller {
     }
     @RequestMapping(method = RequestMethod.PUT, value = "/bu/{id}")
     public void updateBU(@RequestBody BU BU,@PathVariable long id){
-        buService.update(BU,id);
+        BU existingBU = buService.getbuById(id);
+        if (existingBU != null) {
+            // Update the properties of the existing BU with the values from the request
+            if (BU.getName() != null) {
+                existingBU.setName(BU.getName());
+            }
+            if (BU.getCreatedBy() != null) {
+                existingBU.setCreatedBy(BU.getCreatedBy());
+            }
+            if (BU.getLastModifiedBy() != null) {
+                existingBU.setLastModifiedBy(BU.getLastModifiedBy());
+            }
+            if (BU.getCreatedDate() != 0) {
+                existingBU.setCreatedDate(BU.getCreatedDate());
+            }
+            if (BU.getLastModifiedDate() != 0) {
+                existingBU.setLastModifiedDate(BU.getLastModifiedDate());
+            }
+
+            // Call the update method from the service to save the changes
+            buService.update(existingBU,id);
+        }
     }
 }

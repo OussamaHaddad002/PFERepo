@@ -44,6 +44,21 @@ public class EpicController {
     }
     @RequestMapping(method = RequestMethod.PUT, value = "/epic/{id}")
     public void updateEpic(@RequestBody Epic epic,@PathVariable long id){
-        epicService.update(epic,id);
+        Epic existingEpic = epicService.getEpicById(id);
+        if (existingEpic != null) {
+            // Update only the non-null properties of the existing epic with the values from the request
+            if (epic.getName() != null) {
+                existingEpic.setName(epic.getName());
+            }
+            if (epic.getName() != null) {
+                existingEpic.setName(epic.getName());
+            }
+            if (epic.getDeadline() != 0) {
+                existingEpic.setDeadline(epic.getDeadline());
+            }
+
+            // Call the update method from the service to save the changes
+            epicService.update(existingEpic,id);
+        }
     }
 }

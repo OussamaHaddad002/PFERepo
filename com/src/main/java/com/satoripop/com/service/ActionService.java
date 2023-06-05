@@ -1,7 +1,9 @@
 package com.satoripop.com.service;
 
 import com.satoripop.com.model.Action;
+import com.satoripop.com.model.Epic;
 import com.satoripop.com.repository.ActionRepository;
+import com.satoripop.com.repository.EpicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,6 +15,8 @@ public class ActionService {
 
     @Autowired
     private ActionRepository actionRepository;
+    @Autowired
+    private EpicRepository epicRepository;
 
     public List<Action> getActions() {
         List<Action> actions = new ArrayList<>();
@@ -41,5 +45,19 @@ public class ActionService {
     }
 
 
+    public void saveActionWithEpic(Action action) {
+        Epic epic = action.getEpic();
+
+        // Save the Epic instance if it's new or not yet persisted
+        if (epic.getId() == null) {
+            epicRepository.save(epic);
+        }
+
+        // Set the saved Epic in the Action instance
+        action.setEpic(epic);
+
+        // Save the Action instance
+        actionRepository.save(action);
+    }
 }
 

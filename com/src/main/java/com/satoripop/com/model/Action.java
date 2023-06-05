@@ -36,6 +36,7 @@ public class Action {
     @Column(name = "last_modified_date")
     private int lastModifiedDate;
 
+
     @ManyToOne
     private UserInfo assignedTo;
 
@@ -145,5 +146,13 @@ public class Action {
     public Action epic(Epic epic) {
         this.setEpic(epic);
         return this;
+    }
+
+    public String getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.satoripop.com.model.enumeration.Regime;
 import com.satoripop.com.model.enumeration.Res;
 import com.satoripop.com.model.enumeration.Role;
+import com.satoripop.com.model.enumeration.bus;
 import jakarta.persistence.*;
 
 @Entity
@@ -47,6 +48,15 @@ public class ResourcePlanning {
     @Column(name = "last_modified_date")
     private int lastModifiedDate;
 
+    @Column(name = "bu")
+    private bus bu;
+
+    @Column(name = "TeamMember")
+    private String TeamMember;
+
+    @Column(name = "duration")
+    private Float duration;
+
     @ManyToOne
     private UserInfo user;
 
@@ -58,7 +68,7 @@ public class ResourcePlanning {
     public ResourcePlanning() {
     }
 
-    public ResourcePlanning(Long id, Role role, Regime regime, int startDate, int endDate, Float effort, Res status, String createdBy, String lastModifiedBy, int createdDate, int lastModifiedDate) {
+    public ResourcePlanning(Long id,String name ,Role role,bus bu ,Regime regime, int startDate, int endDate, Float effort, Res status, String createdBy, String lastModifiedBy, int createdDate, int lastModifiedDate, Float duration) {
         this.id = id;
         this.role = role;
         this.regime = regime;
@@ -70,6 +80,9 @@ public class ResourcePlanning {
         this.lastModifiedBy = lastModifiedBy;
         this.createdDate = createdDate;
         this.lastModifiedDate = lastModifiedDate;
+        this.bu=bu;
+        this.TeamMember=name;
+        this.duration=duration;
     }
 
     public Long getId() {
@@ -192,4 +205,27 @@ public class ResourcePlanning {
         return this;
     }
 
+    public bus getBu() {
+        return bu;
+    }
+
+    public void setBu(bus bu) {
+        this.bu = bu;
+    }
+
+    public String getTeamMember() {
+        return TeamMember;
+    }
+
+    public void setTeamMember(String teamMember) {
+        TeamMember = teamMember;
+    }
+
+    public Float getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Float duration) {
+        this.duration = duration;
+    }
 }
